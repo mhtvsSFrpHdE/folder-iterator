@@ -4,19 +4,19 @@
 
 function FolderIterator {
 	param (
-		$SourceFolder,
+		$InputFolder,
 		$OutputFolder,
 		# Filter file extension name
 		# .wav
 		# .*
-		$SourceFileType,
+		$InputFileType,
 		# 2nd format, use only with rare situation
-		$SourceFileType2 = $SourceFileType
+		$InputFileType2 = $InputFileType
 	)
 
-	# Check source folder exist
-	if(! (Test-Path -LiteralPath $sourceFolder) ){
-		"ERROR: Source folder isn't exist."
+	# Check input folder exist
+	if(! (Test-Path -LiteralPath $InputFolder) ){
+		"ERROR: Input folder isn't exist."
 		"ERR: 0"
 		exit
 	}
@@ -44,7 +44,7 @@ function FolderIterator {
 	try{
 		# Get file from subfolder | Filter extension name | Select name
 		# Where match multi: where Name -match "a|b"
-		$myFileSet = Get-ChildItem -literalpath $sourceFolder -file | where Name -match "^*\$sourceFileType|^*\$sourceFileType2" | Select-Object name
+		$myFileSet = Get-ChildItem -literalpath $InputFolder -file | where Name -match "^*\$InputFileType|^*\$InputFileType2" | Select-Object name
 	}
 	catch{
 		"ERROR: Something happed while listing files."
@@ -53,22 +53,22 @@ function FolderIterator {
 		exit
 	}
 
-	# Print source & output folder path after error check
-	"Source: $sourceFolder"
+	# Print input & output folder path after error check
+	"Input: $InputFolder"
 	"Output: $outputFolder`n"
 
 	try{
 		# Loop through fileset
-		foreach ($mySourceFileObj in $myFileSet)
+		foreach ($myInputFileObj in $myFileSet)
 		{
-			# Save source file full path
-			$mySourceFile="$SourceFolder\" + $mySourceFileObj.Name
+			# Save input file full path
+			$myInputFile="$InputFolder\" + $myInputFileObj.Name
 
 			# Save output file name without extension name
-			$myOutFileName="$outputFolder\" + [io.path]::GetFileNameWithoutExtension($mySourceFileObj.Name)
+			$myOutFileName="$outputFolder\" + [io.path]::GetFileNameWithoutExtension($myInputFileObj.Name)
 
 			# Function call to do something with this file
-			DoSomethingFunction -InputFile $mySourceFile -OutputFileName $myOutFileName
+			DoSomethingFunction -InputFile $myInputFile -OutputFileName $myOutFileName
 		}
 	}
 	catch{
