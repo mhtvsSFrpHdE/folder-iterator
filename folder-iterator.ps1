@@ -83,7 +83,7 @@ function FolderIterator {
 			#	-OutputFileArray define a array [0] is file name with full path
 			#	[1] is file name with full path but without file extension
 			#	[2] is just file name without full path and file extension
-			DoSomethingFunction -InputFile $myInputFile -OutputFileArray $myOutputFile
+			DoSomethingFunction -InputFile $myInputFileFullPath -OutputFileArray $myOutputFile
 		}
 
 		# Loop through folderset
