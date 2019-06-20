@@ -30,7 +30,7 @@ function FolderIterator {
 
 			# Export temp write permission test file path
 			# Add a random name suffix to prevent overwrite user file
-			$writePermissionTestFile = "$outputFolder\EmptyFileU3wlq40D6NuP.txt"
+			$writePermissionTestFile = Join-Path $outputFolder "EmptyFileU3wlq40D6NuP.txt"
 			# Create test file
 			New-Item -Path $writePermissionTestFile -ItemType File | Out-Null
 			# Delete test file
