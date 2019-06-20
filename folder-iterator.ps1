@@ -5,7 +5,7 @@
 function FolderIterator {
 	param (
 		$InputFolder,
-		$OutputFolder,
+		$OutputFolder = $false,
 		# Filter file extension name
 		# .wav
 		# .*
@@ -22,16 +22,18 @@ function FolderIterator {
 	}
 
 	try{
-		# Create this output folder
-		New-Item -Path "$outputFolder" -ItemType Directory -Force | Out-Null
+		if($OutputFolder -ne $false){
+			# Create this output folder
+			New-Item -Path "$outputFolder" -ItemType Directory -Force | Out-Null
 
-		# Save temp write permission test file path
-		# Have a random name to prevent overwrite user file
-		$writePermissionTestFile = "$outputFolder\EmptyFileU3wlq40D6NuP.txt"
-		# Create test file
-		New-Item -Path $writePermissionTestFile -ItemType File | Out-Null
-		# Delete test file
-		Remove-Item -LiteralPath $writePermissionTestFile | Out-Null
+			# Export temp write permission test file path
+			# Add a random name suffix to prevent overwrite user file
+			$writePermissionTestFile = "$outputFolder\EmptyFileU3wlq40D6NuP.txt"
+			# Create test file
+			New-Item -Path $writePermissionTestFile -ItemType File | Out-Null
+			# Delete test file
+			Remove-Item -LiteralPath $writePermissionTestFile | Out-Null
+		}
 	}
 	catch{
 		"ERROR: Something happed while creating output folder."
