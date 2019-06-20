@@ -16,9 +16,10 @@ function FolderIterator {
 
 	# Check input folder exist
 	if(! (Test-Path -LiteralPath $InputFolder) ){
-		"ERROR: Input folder isn't exist."
-		"ERR: 0"
-		exit
+		Write-Error "ERROR: Input folder isn't exist."
+		Write-Error "ERR: 0"
+		
+		return $false
 	}
 
 	try{
@@ -36,10 +37,11 @@ function FolderIterator {
 		}
 	}
 	catch{
-		"ERROR: Something happed while creating output folder."
-		"ERR: 1"
-		$_.Exception|format-list -force
-		exit
+		$_.Exception | Format-List -Force
+		Write-Error "ERROR: Something happed while creating output folder."
+		Write-Error "ERR: 1"
+		
+		return $false
 	}
 
 
@@ -49,10 +51,11 @@ function FolderIterator {
 		$myFileSet = Get-ChildItem -literalpath $InputFolder -file | where Name -match "^*\$InputFileType|^*\$InputFileType2" | Select-Object name
 	}
 	catch{
-		"ERROR: Something happed while listing files."
-		"ERR: 2"
-		$_.Exception|format-list -force
-		exit
+		$_.Exception | Format-List -Force
+		Write-Error "ERROR: Something happed while listing files."
+		Write-Error "ERR: 2"
+		
+		return $false
 	}
 
 	# Print input & output folder path after error check
@@ -74,9 +77,10 @@ function FolderIterator {
 		}
 	}
 	catch{
-		"ERROR: Something happend while run sub script."
-		"ERR: 3"
-		$_.Exception|format-list -force
-		exit
+		$_.Exception | Format-List -Force
+		Write-Error "ERROR: Something happend while run sub script."
+		Write-Error "ERR: 3"
+		
+		return $false
 	}
 }
