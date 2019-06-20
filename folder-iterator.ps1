@@ -70,13 +70,21 @@ function FolderIterator {
 		foreach ($myInputFileObj in $myFileSet)
 		{
 			# Save input file full path
-			$myInputFile="$InputFolder\" + $myInputFileObj.Name
+			$myInputFileFullPath = $myInputFileObj.Name
+
+			$myOutputFileNameWithoutExtension = [io.path]::GetFileNameWithoutExtension($myInputFileObj.Name)
+			$myOutputFileNameWithoutExtensionAndPath = Join-Path $InputFolder $myOutputFileNameWithoutExtension
 
 			# Save output file name without extension name
-			$myOutFileName="$outputFolder\" + [io.path]::GetFileNameWithoutExtension($myInputFileObj.Name)
+			$myOutputFile = $myInputFileFullPath, $myOutputFileNameWithoutExtension, $myOutputFileNameWithoutExtensionAndPath
 
 			# Function call to do something with this file
-			DoSomethingFunction -InputFile $myInputFile -OutputFileName $myOutFileName
+			# API: -InputFile just need to be a normal file name with full path
+			#	-OutputFileArray define a array [0] is file name with full path
+			#	[1] is file name with full path but without file extension
+			#	[2] is just file name without full path and file extension
+			DoSomethingFunction -InputFile $myInputFile -OutputFileArray $myOutputFile
+		}
 		}
 	}
 	catch{
