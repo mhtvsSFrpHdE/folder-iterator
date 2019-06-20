@@ -11,7 +11,8 @@ function FolderIterator {
 		# .*
 		$InputFileType,
 		# 2nd format, use only with rare situation
-		$InputFileType2 = $InputFileType
+		$InputFileType2 = $InputFileType,
+		[switch] $Recurse = $false
 	)
 
 	# Check input folder exist
