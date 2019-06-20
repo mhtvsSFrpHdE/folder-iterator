@@ -85,6 +85,13 @@ function FolderIterator {
 			#	[2] is just file name without full path and file extension
 			DoSomethingFunction -InputFile $myInputFile -OutputFileArray $myOutputFile
 		}
+
+		# Loop through folderset
+		# If Recurse + no OutputFolder
+		if($Recurse -and ($OutputFolder -eq $false)){
+			foreach ($myInputFolderObj in $myFolderSet){
+				FolderIterator -InputFolder $myInputFileObj.Name -InputFileType $InputFileType -InputFileType2 $InputFileType2 -Recurse
+			}
 		}
 	}
 	catch{
