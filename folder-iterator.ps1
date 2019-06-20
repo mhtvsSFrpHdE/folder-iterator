@@ -48,7 +48,7 @@ function FolderIterator {
 	try{
 		# Get file from subfolder | Filter extension name | Select name
 		# Where match multi: where Name -match "a|b"
-		$myFileSet = Get-ChildItem -literalpath $InputFolder -file | where Name -match "^*\$InputFileType|^*\$InputFileType2" | Select-Object name
+		$myFileSet = Get-ChildItem -LiteralPath $InputFolder -File | Where-Object Name -Match "^*\$InputFileType|^*\$InputFileType2" | Select-Object Name
 	}
 	catch{
 		$_.Exception | Format-List -Force
