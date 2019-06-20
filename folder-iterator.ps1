@@ -47,9 +47,11 @@ function FolderIterator {
 
 
 	try{
-		# Get file from subfolder | Filter extension name | Select name
+		# Get file and folder from subfolder | Filter extension name | Select full name
 		# Where match multi: where Name -match "a|b"
-		$myFileSet = Get-ChildItem -LiteralPath $InputFolder -File | Where-Object Name -Match "^*\$InputFileType|^*\$InputFileType2" | Select-Object Name
+		# Select FullName vs Name is give full path or not
+		$myFileSet = Get-ChildItem -LiteralPath $InputFolder -File | Where-Object Name -Match "^*\$InputFileType|^*\$InputFileType2" | Select-Object FullName
+		$myFolderSet = Get-ChildItem -LiteralPath $InputFolder -Directory | Select-Object FullName
 	}
 	catch{
 		$_.Exception | Format-List -Force
