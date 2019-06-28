@@ -9,7 +9,7 @@ function FolderIterator {
 		# Filter file extension name
 		# .wav
 		# .*
-		$InputFileType,
+		$InputFileType = ".*",
 		# 2nd format, use only with rare situation
 		$InputFileType2 = $InputFileType,
 		[switch] $Recurse = $false
