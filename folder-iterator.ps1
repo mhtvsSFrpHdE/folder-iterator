@@ -73,7 +73,7 @@ function FolderIterator {
 			$myInputFileFullPath = $myInputFileObj.FullName
 
 			$myOutputFileNameWithoutExtension = [io.path]::GetFileNameWithoutExtension($myInputFileObj.FullName)
-			$myOutputFileNameWithoutExtensionAndPath = Join-Path $InputFolder $myOutputFileNameWithoutExtension
+			$myOutputFileNameWithoutExtensionAndPath = Split-Path $myOutputFileNameWithoutExtension -Leaf
 
 			# Save output file name without extension name
 			$myOutputFile = $myInputFileFullPath, $myOutputFileNameWithoutExtension, $myOutputFileNameWithoutExtensionAndPath
