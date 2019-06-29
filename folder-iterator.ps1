@@ -12,7 +12,8 @@ function FolderIterator {
 		$InputFileType = ".*",
 		# 2nd format, use only with rare situation
 		$InputFileType2 = $InputFileType,
-		[switch] $Recurse = $false
+		[switch] $Recurse = $false,
+		[switch] $Verbose = $false
 	)
 
 	# Check input folder exist
@@ -62,8 +63,10 @@ function FolderIterator {
 	}
 
 	# Print input & output folder path after error check
-	"Input: $InputFolder"
-	"Output: $outputFolder`n"
+	if($Verbose){
+		"Input: $InputFolder"
+		"Output: $outputFolder`n"
+	}
 
 	try{
 		# Loop through fileset
