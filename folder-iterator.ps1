@@ -24,6 +24,12 @@ function FolderIterator {
 		return $false
 	}
 
+	# Print input & output folder path after error check
+	if($Verbose){
+		"Input: $InputFolder"
+		"Output: $outputFolder`n"
+	}
+
 	try{
 		if($OutputFolder -ne $false){
 			# Create this output folder
@@ -60,12 +66,6 @@ function FolderIterator {
 		Write-Error "ERR: 2"
 		
 		return $false
-	}
-
-	# Print input & output folder path after error check
-	if($Verbose){
-		"Input: $InputFolder"
-		"Output: $outputFolder`n"
 	}
 
 	try{
