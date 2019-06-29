@@ -24,14 +24,14 @@ function FolderIterator {
         return $false
     }
 
-	# Print input & output folder path after error check
-	if ($Verbose) {
-		Write-Output "Input: $InputFolder"
-		Write-Output "Output: $OutputFolder`n"
-	}
+    # Print input & output folder path after error check
+    if ($Verbose) {
+        Write-Output "Input: $InputFolder"
+        Write-Output "Output: $OutputFolder`n"
+    }
 	
-	#TODO this is not work
-	# Generate output folder struct
+    #TODO this is not work
+    # Generate output folder struct
     try {
         if ($OutputFolder -ne $false) {
             # Create this output folder
