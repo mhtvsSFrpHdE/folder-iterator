@@ -91,7 +91,7 @@ function FolderIterator {
 
 		# Loop through folderset
 		# If Recurse + no OutputFolder + myFolderSet count > 0
-		if( ($Recurse -and ($OutputFolder -eq $false) ) -and ($myFolderSet.Count -gt 0) ){
+		if( ($Recurse -and ($OutputFolder -eq $false) ) -and ($myFolderSet.FullName.Count -gt 0) ){
 			foreach ($myInputFolderObj in $myFolderSet){
 				FolderIterator -InputFolder $myInputFolderObj.FullName -InputFileType $InputFileType -InputFileType2 $InputFileType2 -Recurse
 			}
