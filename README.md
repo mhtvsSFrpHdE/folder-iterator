@@ -1,7 +1,6 @@
-# folder-iterator
-**Contact**  
-See https://github.com/mhtvsSFrpHdE/contact-me  
+![](https://raw.githubusercontent.com/mhtvsSFrpHdE/contact-me/master/AboutIssue.svg)
 
+# folder-iterator
 **What is this**  
 A powershell library that trying to perform same operation to each file inside a folder.
 
